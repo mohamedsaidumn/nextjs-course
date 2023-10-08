@@ -1,4 +1,4 @@
-const EventItem = (props: any) => {
+const EventItem = (props) => {
   const { title, image, date, location, id } = props;
 
   const humanReadableDate = new Date(date).toLocaleDateString("en-US", {

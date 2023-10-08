@@ -23,6 +23,18 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.js",
+    "**/*.js",
+    "**/*.jsx",
+    ".next/types/**/*.js",
+    "data/dummy-data.js",
+    "components/events/event-list.js",
+    "components/events/event-item.js",
+    "pages/index.js",
+    "pages/_app.js",
+    "pages/index.js",
+    "pages/_app.js"
+  ],
   "exclude": ["node_modules"]
 }

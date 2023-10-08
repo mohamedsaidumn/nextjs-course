@@ -1,13 +1,10 @@
-import { EventType } from "@/data/types";
 import EventItem from "./event-item";
-
-type EventListProp = { items: EventType[] };
-const EventList = (props: EventListProp) => {
+const EventList = (props) => {
   const { items } = props;
 
   return (
     <ul>
-      {items.map((event: EventType) => (
+      {items.map((event) => (
         <EventItem
           key={event.id}
           id={event.id}
