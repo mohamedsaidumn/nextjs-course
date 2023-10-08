@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const EventItem = (props) => {
   const { title, image, date, location, id } = props;
 
@@ -22,7 +24,7 @@ const EventItem = (props) => {
           </div>
         </div>
         <div>
-          <span>Explore Event</span>
+          <Link href={exploreLink}>Explore Event</Link>
         </div>
       </div>
     </li>
