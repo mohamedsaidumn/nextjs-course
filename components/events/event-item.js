@@ -1,9 +1,9 @@
 import Link from "next/link";
 import classes from "./event-item.module.css";
-import Button from "@/ui/Button";
-import AddressIcon from "@/icons/address-icon";
-import ArrowRightIcon from "@/icons/arrow-right-icon";
-import DateIcon from "@/icons/date-icon";
+import Button from "@/components/ui/Button";
+import AddressIcon from "@/components/icons/address-icon";
+import ArrowRightIcon from "@/components/icons/arrow-right-icon";
+import DateIcon from "@/components/icons/date-icon";
 
 const EventItem = (props) => {
   const { title, image, date, location, id } = props;
