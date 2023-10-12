@@ -3,6 +3,8 @@ import { Fragment } from "react";
 import Button from "@/components/ui/Button";
 import { getFilteredEvents } from "@/data/dummy-data";
 import { EventList } from "@/components/events/event-list";
+import ResultsTitle from "@/components/events/results-title";
+import ErrorAlert from "@/components/ui/error-alert";
 function FilteredEventsPage() {
   const router = useRouter();
 
@@ -36,7 +38,9 @@ function FilteredEventsPage() {
   ) {
     return (
       <Fragment>
-        <p>Invalid filter. Please adjust your values!</p>
+        <ErrorAlert>
+          <p>Invalid filter. Please adjust your values!</p>
+        </ErrorAlert>
         <div className="center">
           <Button link="/events">Show All Events</Button>
         </div>
@@ -52,7 +56,9 @@ function FilteredEventsPage() {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <Fragment>
-        <p>No events found for the chosen filter!</p>
+        <ErrorAlert>
+          <p>No events found for the chosen filter!</p>
+        </ErrorAlert>
         <div className="center">
           <Button link="/events">Show All Events</Button>
         </div>
@@ -60,8 +66,11 @@ function FilteredEventsPage() {
     );
   }
 
+  const date = new Date(numYear, numMonth - 1);
+
   return (
     <Fragment>
+      <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </Fragment>
   );

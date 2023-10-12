@@ -4,6 +4,7 @@ import EventLogistics from "@/components/event-detail/event-logistics";
 import EventSummary from "@/components/event-detail/event-summary";
 import { useRouter } from "next/router";
 import { getEventById } from "@/data/dummy-data";
+import ErrorAlert from "@/components/ui/error-alert";
 
 function EventDetailPage() {
   const router = useRouter();
@@ -13,7 +14,11 @@ function EventDetailPage() {
   console.log(event);
 
   if (!event) {
-    return <p> No event found</p>;
+    return (
+      <ErrorAlert>
+        <p> No event found</p>
+      </ErrorAlert>
+    );
   }
 
   return (
