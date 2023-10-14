@@ -1,9 +1,30 @@
-function HomePage() {
+import path from "path";
+import fs from "fs/promises";
+
+import Link from "next/link";
+
+function HomePage(props) {
+  const { products } = props;
+
   return (
-    <div>
-      <h1>The Home Page</h1>
-    </div>
+    <ul>
+      {products.map((product) => (
+        <li key={product.id}>{product.title}</li>
+      ))}
+    </ul>
   );
+}
+
+export async function getStaticProps(context) {
+  const filePath = path.join(process.cwd(), "data", "dummy-backend.json");
+  const jsonData = await fs.readFile(filePath);
+  const data = JSON.parse(jsonData);
+
+  return {
+    props: {
+      products: data.products,
+    },
+  };
 }
 
 export default HomePage;
