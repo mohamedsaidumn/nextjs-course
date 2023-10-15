@@ -7,7 +7,7 @@ function ProductDetailPage(props) {
   const { loadedProduct } = props;
 
   if (!loadedProduct) {
-    return <p>Loading...</p>;
+    return <p>Loading....</p>;
   }
 
   return (
@@ -27,6 +27,8 @@ async function getData() {
 }
 
 export async function getStaticProps(context) {
+  console.log("(Re-)Generating...");
+
   const { params } = context;
 
   const productId = params.pid;
@@ -46,11 +48,8 @@ export async function getStaticPaths() {
       { params: { pid: "p1" } },
       { params: { pid: "p2" } },
       { params: { pid: "p3" } },
-      { params: { pid: "p4" } },
-      { params: { pid: "p5" } },
-      { params: { pid: "p6" } },
     ],
-    fallback: false,
+    fallback: true,
   };
 }
 
