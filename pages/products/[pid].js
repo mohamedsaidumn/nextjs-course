@@ -43,12 +43,14 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
+  const data = await getData();
+  const productIds = data.products.map((product) => product.id);
+  const pathsWithParams = productIds.map((productId) => {
+    return { params: { pid: productId } };
+  });
+
   return {
-    paths: [
-      { params: { pid: "p1" } },
-      { params: { pid: "p2" } },
-      { params: { pid: "p3" } },
-    ],
+    paths: pathsWithParams,
     fallback: true,
   };
 }
