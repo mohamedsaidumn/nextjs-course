@@ -26,26 +26,6 @@ function LastSalesPage(props) {
     }
   }, [data]);
 
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   fetch("https://nextjs-course-8b7d3-default-rtdb.firebaseio.com/sales.json")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       const transformedSales = [];
-
-  //       for (const key in data) {
-  //         transformedSales.push({
-  //           id: key,
-  //           username: data[key].username,
-  //           volume: data[key].volume,
-  //         });
-  //       }
-
-  //       setSales(transformedSales);
-  //       setIsLoading(false);
-  //     });
-  // }, []);
-
   if (error) {
     return <p>Failed to load.</p>;
   }
@@ -80,7 +60,6 @@ export async function getStaticProps() {
       volume: data[key].volume,
     });
   }
-
   return { props: { sales: transformedSales } };
 }
 
