@@ -24,7 +24,7 @@ function HomePage() {
       .then((data) => console.log(data));
   }
 
-  function loadHandler() {
+  function loadFeedbackHandler() {
     fetch("/api/feedback", {
       method: "GET",
       headers: {
@@ -51,7 +51,7 @@ function HomePage() {
         </div>
         <button>Send Feedback</button>
       </form>
-      <button onClick={loadHandler}>LoadButton</button>
+      <button onClick={loadFeedbackHandler}>Load Button</button>
       <ul>
         {feedbackItems.map((item) => {
           return <li key={item.id}>{item.text}</li>;
