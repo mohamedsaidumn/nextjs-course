@@ -12,7 +12,7 @@ function HomePage() {
     const enteredFeedback = feedbackInputRef.current.value;
 
     const reqBody = { email: enteredEmail, text: enteredFeedback };
-    console.log(reqBody);
+
     fetch("/api/feedback", {
       method: "POST",
       body: JSON.stringify(reqBody),

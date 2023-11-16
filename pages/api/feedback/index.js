@@ -7,7 +7,6 @@ export function buildFeedbackPath() {
 
 export function extractFeedback(filePath) {
   const fileData = fs.readFileSync(filePath);
-  console.log(fileData);
   const data = JSON.parse(fileData);
   return data;
 }
@@ -22,10 +21,8 @@ function handler(req, res) {
       email: email,
       text: feedbackText,
     };
-    console.log(newFeedback);
     // store that in a database or in a file
     const filePath = buildFeedbackPath();
-    console.log(filePath);
     const data = extractFeedback(filePath);
     data.push(newFeedback);
     fs.writeFileSync(filePath, JSON.stringify(data));
