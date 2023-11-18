@@ -1,5 +1,12 @@
-function handler(req, res) {
+import { MongoClient } from "mongodb";
+
+const uri =
+  "mongodb+srv://mohamedsaidumn:3kRu3Ni2fucYhLGp@cluster04211.3e1hgkn.mongodb.net/events?retryWrites=true&w=majority";
+
+async function handler(req, res) {
   const eventId = req.query.eventId;
+
+  const client = await MongoClient.connect(uri);
 
   if (req.method === "POST") {
     const { email, name, text } = req.body;
@@ -12,16 +19,21 @@ function handler(req, res) {
       text.trim() === ""
     ) {
       res.status(422).json({ message: "Invalid input." });
-      client.close();
       return;
     }
 
     const newComment = {
-      id: new Date.now(),
       name: name,
       email: email,
       text: text,
+      eventId: eventId,
     };
+    console.log(newComment);
+
+    const db = client.db();
+    const result = await db.collection("comments").insertOne(newComment);
+
+    console.log(result);
 
     console.log(newComment);
     res.status(201).json({ message: "added comment", comment: newComment });
@@ -35,6 +47,8 @@ function handler(req, res) {
 
     res.status(200).json({ comments: dummyList });
   }
+
+  client.close();
 }
 
 export default handler;
