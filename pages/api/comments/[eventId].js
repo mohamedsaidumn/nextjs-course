@@ -40,10 +40,13 @@ async function handler(req, res) {
   }
 
   if (req.method === "GET") {
-    const dummyList = [
-      { id: "c1", name: "mohamed", text: "wow that is amazing" },
-      { id: "c2", name: "sadiq", text: "That is crazy" },
-    ];
+    const db = client.db();
+    const dummyList = await db
+      .collection("comments")
+      .find()
+      .sort({ _id: -1 })
+      .toArray();
+    console.log(dummyList);
 
     res.status(200).json({ comments: dummyList });
   }
