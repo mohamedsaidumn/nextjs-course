@@ -1,6 +1,5 @@
 function handler(req, res) {
   const eventId = req.query.eventId;
-  console.log(req.query);
 
   if (req.method === "POST") {
     const { email, name, text } = req.body;
