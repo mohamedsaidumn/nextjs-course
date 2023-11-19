@@ -1,20 +1,4 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
-
-export async function connectDatabase() {
-  const uri =
-    "mongodb+srv://mohamedsaidumn:3kRu3Ni2fucYhLGp@cluster04211.3e1hgkn.mongodb.net/newsletter?retryWrites=true&w=majority";
-  const client = await MongoClient.connect(uri);
-
-  return client;
-}
-
-export async function insertDocument(client, document) {
-  const db = client.db();
-
-  const result = await db.collection("emails").insertOne({ email: document });
-
-  return result;
-}
+import { insertDocument, connectDatabase } from "@/helpers/db-util";
 
 async function handler(req, res) {
   if (req.method === "POST") {
