@@ -1,7 +1,20 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
-const uri =
-  "mongodb+srv://mohamedsaidumn:3kRu3Ni2fucYhLGp@cluster04211.3e1hgkn.mongodb.net/newsletter?retryWrites=true&w=majority";
+export async function connectDatabase() {
+  const uri =
+    "mongodb+srv://mohamedsaidumn:3kRu3Ni2fucYhLGp@cluster04211.3e1hgkn.mongodb.net/newsletter?retryWrites=true&w=majority";
+  const client = await MongoClient.connect(uri);
+
+  return client;
+}
+
+export async function insertDocument(client, document) {
+  const db = client.db();
+
+  const result = await db.collection("emails").insertOne({ email: document });
+
+  return result;
+}
 
 async function handler(req, res) {
   if (req.method === "POST") {
@@ -13,10 +26,22 @@ async function handler(req, res) {
     }
     console.log(userEmail);
 
-    const client = await MongoClient.connect(uri);
-    const db = client.db();
+    let client;
 
-    await db.collection("emails").insertOne({ email: userEmail });
+    try {
+      client = await connectDatabase();
+    } catch (error) {
+      res.status(500).json({ message: "Connecting to the database failed!" });
+      return;
+    }
+
+    try {
+      await insertDocument(client, "newsletter", { email: userEmail });
+      client.close();
+    } catch (error) {
+      res.status(500).json({ message: "Inserting data failed!" });
+      return;
+    }
 
     client.close();
 
