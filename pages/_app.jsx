@@ -1,7 +1,6 @@
 import "../styles/globals.css";
 
-function MyApp(props) {
-  const { Component, pageProps } = props;
+function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }
 
