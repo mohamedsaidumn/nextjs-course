@@ -1,6 +1,7 @@
 import { MongoClient } from "mongodb";
-const url =
-  "mongodb+srv://mohamedsaidumn:3kRu3Ni2fucYhLGp@cluster04211.3e1hgkn.mongodb.net/my-site?retryWrites=true&w=majority";
+
+const url = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.3e1hgkn.mongodb.net/${process.env.mongodb_database}?retryWrites=true&w=majority`;
+
 async function handler(req, res) {
   if (req.method === "POST") {
     const { email, name, message } = req.body;
