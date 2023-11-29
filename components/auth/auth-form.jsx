@@ -47,10 +47,10 @@ function AuthForm() {
         password: enteredPassword,
       });
 
-      // if (!result.error) {
-      //   // set some auth state
-      //   router.replace("/profile");
-      // }
+      if (!result.error) {
+        // set some auth state
+        router.replace("/profile");
+      }
     } else {
       try {
         const result = await createUser(enteredEmail, enteredPassword);
