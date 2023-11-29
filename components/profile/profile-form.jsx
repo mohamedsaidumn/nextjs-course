@@ -3,20 +3,20 @@ import { getSession } from "next-auth/client";
 import { useEffect, useState } from "react";
 
 function ProfileForm() {
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    getSession().then((session) => {
-      if (!session) {
-        window.location.href = "/auth";
-      } else {
-        setIsLoading(false);
-      }
-    });
-  }, []);
+  // const [isLoading, setIsLoading] = useState(true);
+  // useEffect(() => {
+  //   getSession().then((session) => {
+  //     if (!session) {
+  //       window.location.href = "/auth";
+  //     } else {
+  //       setIsLoading(false);
+  //     }
+  //   });
+  // }, []);
 
-  if (isLoading) {
-    return <p className={classes.profile}>Loading...</p>;
-  }
+  // if (isLoading) {
+  //   return <p className={classes.profile}>Loading...</p>;
+  // }
 
   return (
     <form className={classes.form}>
